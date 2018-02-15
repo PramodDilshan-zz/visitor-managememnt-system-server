@@ -7,6 +7,7 @@ import com.mobitel.service.ArrivedService;
 import com.mobitel.service.EmployeeService;
 import com.mobitel.service.PendingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by pramod-dilshan on 1/7/18.
  */
-
+@CrossOrigin
 @RestController
 @RequestMapping("/{username}/pending")
 public class PendingController {

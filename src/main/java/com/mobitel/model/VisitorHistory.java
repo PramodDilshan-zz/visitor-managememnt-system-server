@@ -23,7 +23,7 @@ public class VisitorHistory implements Serializable {
     private int passno;
     private VisitorHistoryId visitorHistoryId;
 
-    @JsonIgnore
+//    @JsonIgnore
     private VisitorSchedule visitorSchedule;
 
 

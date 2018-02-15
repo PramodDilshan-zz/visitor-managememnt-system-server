@@ -53,7 +53,8 @@ public class ScheduleService {
 
 
     public List<VisitorSchedule> viewEmployeePendingList(String employeeUsername) {
-        return this.visitorScheduleRepository.findByEmployeeUsername(employeeUsername);
+        Date date = new Date();
+        return this.visitorScheduleRepository.findByEmployeeUsernameWithDate(date,employeeUsername);
     }
 
     public VisitorSchedule findVisitorScheduleById(VisitorScheduleId visitorScheduleId){

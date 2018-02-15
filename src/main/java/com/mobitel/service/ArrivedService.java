@@ -7,6 +7,7 @@ import com.mobitel.repositiry.VisitorHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,7 +45,8 @@ public class ArrivedService {
     }
 
     public List<VisitorHistory> findArrivedList() {
-        return this.visitorHistoryRepository.findByLeavingDateTime(null);
+        Date date = new Date();
+        return this.visitorHistoryRepository.findByLeavingDateTimeWithDate(date);
     }
 }
 

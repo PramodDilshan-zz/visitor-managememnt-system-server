@@ -34,9 +34,10 @@ public class HistoryService {
     public void markAsLeave(VisitorHistoryId visitorHistoryId){
         visitorHistory = this.visitorHistoryRepository.findOne(visitorHistoryId);
         visitorHistory.setLeavingDateTime(new Date());
+        this.visitorHistoryRepository.save(visitorHistory);
     }
 
     public List<VisitorHistory> findHistoryList() {
-        return this.visitorHistoryRepository.findAll();
+        return this.visitorHistoryRepository.findAllByOrderByLeavingDateTimeDesc();
     }
 }

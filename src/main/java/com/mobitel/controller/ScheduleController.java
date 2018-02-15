@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by pramod-dilshan on 1/26/18.
  */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/{username}/schedule")
 public class ScheduleController {
@@ -43,6 +43,7 @@ public class ScheduleController {
         return new ResponseEntity<>(visitorInfo, HttpStatus.OK);
     }
 
+        
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<VisitorSchedule> saveSchedule(@PathVariable String username, @RequestBody VisitorSchedule schedule) {
         this.employeeService.validateUser(username);
@@ -63,6 +64,5 @@ public class ScheduleController {
         this.scheduleService.cancelSchedule(visitorSchedule);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }

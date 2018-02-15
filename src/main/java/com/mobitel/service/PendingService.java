@@ -1,11 +1,11 @@
 package com.mobitel.service;
 
-import com.mobitel.model.VisitorHistory;
 import com.mobitel.model.VisitorSchedule;
 import com.mobitel.repositiry.VisitorHistoryRepository;
 import com.mobitel.repositiry.VisitorScheduleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +29,12 @@ public class PendingService {
 
 
     public List<VisitorSchedule> viewAllPendingList(String username) {
+        Date date = new Date();
+
+//        System.out.println(date.toString());
+
         this.employeeService.validateUser(username);
-        return visitorScheduleRepository.findAll();
+        return visitorScheduleRepository.findAllWithdate(date);
     }
 
 

@@ -1,5 +1,6 @@
 package com.mobitel.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pramod-dilshan on 1/25/18.
@@ -24,17 +26,23 @@ public class VisitorSchedule implements Serializable {
     private Date scheduleEndDate;
     private VisitorScheduleId visitorScheduleId;
 
-    @JsonIgnore
     private Employee employee;
-//    @JsonIgnore
+
     private VisitorInfo visitorInfo;
+
+    @JsonIgnore
+    private List<VisitorHistory> visitorHistories;
+
+
 
     public VisitorSchedule(Employee employee,
                            VisitorInfo visitorInfo,
                            VisitorScheduleId visitorScheduleId,
                            String purpose,
-                           Date scheduleEndDate){
+                           Date scheduleEndDate
+                           ){
         this.setEmployee(employee);
+
         this.setVisitorScheduleId(visitorScheduleId);
         this.setVisitorInfo(visitorInfo);
         this.setPurpose(purpose);
@@ -98,6 +106,15 @@ public class VisitorSchedule implements Serializable {
 
     public void setVisitorScheduleId(VisitorScheduleId visitorScheduleId) {
         this.visitorScheduleId = visitorScheduleId;
+    }
+
+    @OneToMany(mappedBy = "visitorSchedule")
+    public List<VisitorHistory> getVisitorHistories() {
+        return visitorHistories;
+    }
+
+    public void setVisitorHistories(List<VisitorHistory> visitorHistories) {
+        this.visitorHistories = visitorHistories;
     }
 
 

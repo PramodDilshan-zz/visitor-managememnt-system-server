@@ -28,6 +28,7 @@ public class Employee implements Serializable{
     private String floor;
     private String mobileNumber;
 
+    @JsonIgnore
     private List<VisitorSchedule> visitorSchedules;
 
     @Id

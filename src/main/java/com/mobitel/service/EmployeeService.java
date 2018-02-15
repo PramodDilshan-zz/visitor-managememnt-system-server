@@ -34,15 +34,14 @@ public class EmployeeService {
         return this.employeeRepository.findAll();
     }
 
-    public void validateUser(String username) {
-
-        this.employeeRepository.findOne(username);
+    public boolean validateUser(String username) {
+        return this.employeeRepository.exists(username);
     }
 
 
-    public boolean isAuthorized(String username, String password) {
-        String orgPassword = this.employeeRepository.findOne(username).getPassword();
-        Boolean result = orgPassword.equals(password);
+    public boolean isAuthorized(Employee employee) {
+        String orgPassword = this.employeeRepository.findOne(employee.getUsername()).getPassword();
+        Boolean result = orgPassword.equals(employee.getPassword());
         return result;
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by pramod-dilshan on 1/30/18.
  */
-
+@CrossOrigin
 @RestController
 @RequestMapping("/{username}/arrived")
 public class ArrivedController {

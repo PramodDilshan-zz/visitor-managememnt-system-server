@@ -16,6 +16,12 @@ import java.util.List;
 
 @Repository
 public interface VisitorHistoryRepository extends JpaRepository<VisitorHistory,VisitorHistoryId> {
-    List<VisitorHistory> findByLeavingDateTime(Date date);
 
+
+
+    @Query("select v from VisitorHistory v where v.visitorSchedule.scheduleEndDate > ?1 and v.leavingDateTime = null")
+    List<VisitorHistory> findByLeavingDateTimeWithDate(Date date);
+
+
+    List<VisitorHistory> findAllByOrderByLeavingDateTimeDesc();
 }

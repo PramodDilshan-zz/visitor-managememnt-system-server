@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by pramod-dilshan on 1/7/18.
  */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/employee")
 public class EmployeeController {
@@ -30,9 +30,18 @@ public class EmployeeController {
         return employeeService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/login")
-    public ResponseEntity<Boolean> Login(@RequestParam String username, @RequestParam String password){
-        boolean result = this.employeeService.isAuthorized(username, password);
-        return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.POST, path = "/login")
+    public ResponseEntity<Boolean> Login(@RequestBody Employee employee){
+        boolean validate = this.employeeService.validateUser(employee.getUsername());
+
+
+        if(validate == false){
+            return new ResponseEntity<Boolean>(false, HttpStatus.NO_CONTENT);
+        }
+        else{
+            boolean result = this.employeeService.isAuthorized(employee);
+            return new ResponseEntity<Boolean>(result, HttpStatus.OK);
+        }
+
     }
 }
